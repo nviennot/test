@@ -1,0 +1,12 @@
+before_script:
+  - cat /dev/zero | ssh-keygen -q -N ""
+  - wget https://github.com/tmate-io/tmate/releases/download/2.2.0/tmate-2.2.0-static-linux-amd64.tar.gz
+  - tar --strip-components=1 -xf tmate-2.2.0-static-linux-amd64.tar.gz
+  - ./tmate -S /tmp/tmate.sock new-session -d '/bin/bash'
+  - ./tmate -S /tmp/tmate.sock wait tmate-ready
+  - ./tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
+  - mkfifo /tmp/pane.pipe
+  - ./tmate -S /tmp/tmate.sock pipe-pane 'cat >> /tmp/pane.pipe'
+  - cat /tmp/pane.pipe
+
+script: echo running test!
