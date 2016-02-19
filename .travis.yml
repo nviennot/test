@@ -5,6 +5,7 @@ before_script:
   - ./tmate -S /tmp/tmate.sock new-session -d '/bin/bash'
   - ./tmate -S /tmp/tmate.sock wait tmate-ready
   - ./tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
+  - ./tmate -S /tmp/tmate.sock display -p '#{tmate_web}'
   - mkfifo /tmp/pane.pipe
   - ./tmate -S /tmp/tmate.sock pipe-pane 'cat >> /tmp/pane.pipe'
   - cat /tmp/pane.pipe
