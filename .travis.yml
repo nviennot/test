@@ -1,2 +1,1 @@
 script: travis_debug
-env: ENABLE_TRAVIS_DEBUG=1
